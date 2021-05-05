@@ -582,6 +582,8 @@ class Format
             return '';
         }
 
+        $reverse = false;
+                
         if ($roleCategory == 'Staff' or $roleCategory == 'Other') {
             $setting = 'nameFormatStaff' . ($informal? 'Informal' : 'Formal') . ($reverse? 'Reversed' : '');
             $format = isset(static::$settings[$setting])? static::$settings[$setting] : '[title] [preferredName:1]. [surname]';
