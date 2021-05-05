@@ -733,7 +733,7 @@ if ($proceed == false) {
     if (isset($gibbonFamilyID)) {
 
             $dataSibling = array('gibbonFamilyID' => $gibbonFamilyID);
-            $sqlSibling = 'SELECT surname, preferredName, dob, dateStart FROM gibbonFamilyChild JOIN gibbonPerson ON (gibbonFamilyChild.gibbonPersonID=gibbonPerson.gibbonPersonID) WHERE gibbonFamilyID=:gibbonFamilyID ORDER BY dob ASC, surname, preferredName';
+            $sqlSibling = 'SELECT surname, preferredName, dob, dateStart FROM gibbonFamilyChild JOIN gibbonPerson ON (gibbonFamilyChild.gibbonPersonID=gibbonPerson.gibbonPersonID) WHERE gibbonFamilyID=:gibbonFamilyID ORDER BY dob ASC, preferredName, surname';
             $resultSibling = $connection2->prepare($sqlSibling);
             $resultSibling->execute($dataSibling);
 

@@ -48,7 +48,7 @@ class RollGroupTable extends DataTable
         $this->studentGateway = $studentGateway;
     }
 
-    public function build($gibbonRollGroupID, $canViewConfidential, $canPrint, $sortBy = 'rollOrder, surname, preferredName')
+    public function build($gibbonRollGroupID, $canViewConfidential, $canPrint, $sortBy = 'rollOrder, preferredName, surname')
     {
         $guid = $this->session->get('guid');
         $connection2 = $this->db->getConnection();

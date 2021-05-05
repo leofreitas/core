@@ -88,7 +88,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Behaviour/behaviour_letter
 
     $table->addColumn('student', __('Student'))
         ->description(__('Roll Group'))
-        ->sortable(['surname', 'preferredName'])
+        ->sortable(['preferredName', 'surname'])
         ->width('25%')
         ->format(function($person) use ($guid) {
             $url = $_SESSION[$guid]['absoluteURL'].'/index.php?q=/modules/Students/student_view_details.php&gibbonPersonID='.$person['gibbonPersonID'].'&subpage=Behaviour&search=&allStudents=&sort=surname,preferredName';

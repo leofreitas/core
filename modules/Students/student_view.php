@@ -67,7 +67,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Students/student_view.php'
                 $table = DataTable::create('students');
 
                 $table->addColumn('student', __('Student'))
-                    ->sortable(['surname', 'preferredName'])
+                    ->sortable(['preferredName', 'surname'])
                     ->format(Format::using('name', ['', 'preferredName', 'surname', 'Student', true]));
                 $table->addColumn('yearGroup', __('Year Group'));
                 $table->addColumn('rollGroup', __('Roll Group'));
@@ -86,7 +86,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Students/student_view.php'
         if ($canViewBriefProfile || $canViewFullProfile) {
             //Proceed!
             $search = isset($_GET['search'])? $_GET['search'] : '';
-            $sort = isset($_GET['sort'])? $_GET['sort'] : 'surname,preferredName';
+            $sort = isset($_GET['sort'])? $_GET['sort'] : 'preferredName,surname';
             $allStudents = isset($_GET['allStudents'])? $_GET['allStudents'] : '';
             
             $studentGateway = $container->get(StudentGateway::class);
@@ -170,7 +170,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Students/student_view.php'
     
             // COLUMNS
             $table->addColumn('student', __('Student'))
-                ->sortable(['surname', 'preferredName'])
+                ->sortable(['preferredName', 'surname'])
                 ->format(function ($person) {
                     return Format::name('', $person['preferredName'], $person['surname'], 'Student', true, true) . '<br/><small><i>'.Format::userStatusInfo($person).'</i></small>';
                 });

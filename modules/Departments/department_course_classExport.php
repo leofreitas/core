@@ -54,7 +54,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Departments/department_cou
             //Proceed!
 
             $data = ['gibbonCourseClassID' => $gibbonCourseClassID, 'gibbonSchoolYearID' => $_SESSION[$guid]['gibbonSchoolYearID'], 'today' => date('Y-m-d')];
-            $sql = "SELECT role, surname, preferredName, email, studentID, gibbonRollGroup.nameShort as rollGroup
+            $sql = "SELECT role, preferredName, surname, email, studentID, gibbonRollGroup.nameShort as rollGroup
                     FROM gibbonCourseClassPerson 
                     JOIN gibbonPerson ON gibbonCourseClassPerson.gibbonPersonID=gibbonPerson.gibbonPersonID 
                     JOIN gibbonStudentEnrolment ON (gibbonStudentEnrolment.gibbonPersonID=gibbonPerson.gibbonPersonID)
@@ -63,7 +63,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Departments/department_cou
                     AND (dateStart IS NULL OR dateStart<=:today) 
                     AND (dateEnd IS NULL  OR dateEnd>=:today) 
                     AND gibbonStudentEnrolment.gibbonSchoolYearID=:gibbonSchoolYearID
-                    ORDER BY role DESC, surname, preferredName";
+                    ORDER BY role DESC, preferredName, surname";
 
             $result = $pdo->select($sql, $data);
 

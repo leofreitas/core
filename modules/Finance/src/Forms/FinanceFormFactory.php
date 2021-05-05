@@ -66,7 +66,7 @@ class FinanceFormFactory extends DatabaseFormFactory
                 JOIN gibbonFinanceInvoicee ON (gibbonFinanceInvoicee.gibbonPersonID=gibbonPerson.gibbonPersonID)
                 WHERE gibbonPerson.status='Full'
                 AND gibbonStudentEnrolment.gibbonSchoolYearID=:gibbonSchoolYearID
-                ORDER BY gibbonRollGroup.nameShort, surname, preferredName";
+                ORDER BY gibbonRollGroup.nameShort, preferredName, surname";
         }
         else {
             $sql = "SELECT gibbonFinanceInvoiceeID, preferredName, surname, gibbonRollGroup.nameShort AS rollGroupName, dayType
@@ -75,7 +75,7 @@ class FinanceFormFactory extends DatabaseFormFactory
                 JOIN gibbonRollGroup ON (gibbonStudentEnrolment.gibbonRollGroupID=gibbonRollGroup.gibbonRollGroupID)
                 JOIN gibbonFinanceInvoicee ON (gibbonFinanceInvoicee.gibbonPersonID=gibbonPerson.gibbonPersonID)
                 WHERE gibbonStudentEnrolment.gibbonSchoolYearID=:gibbonSchoolYearID
-                ORDER BY gibbonRollGroup.nameShort, surname, preferredName";
+                ORDER BY gibbonRollGroup.nameShort, preferredName, surname";
         }
 
         $results = $this->pdo->executeQuery($data, $sql);
@@ -244,7 +244,7 @@ class FinanceFormFactory extends DatabaseFormFactory
                     AND (contactPriority=1 OR (contactPriority=2 AND contactEmail='Y'))
                     AND parent.status='Full'
                     GROUP BY parent.gibbonPersonID
-                    ORDER BY contactPriority, surname, preferredName";
+                    ORDER BY contactPriority, preferredName, surname";
 
             $result = $this->pdo->executeQuery($data, $sql);
 

@@ -74,7 +74,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Timetable/studentEnrolment
                     JOIN gibbonRollGroup ON (gibbonStudentEnrolment.gibbonRollGroupID=gibbonRollGroup.gibbonRollGroupID)
                     WHERE gibbonStudentEnrolment.gibbonSchoolYearID=:gibbonSchoolYearID AND gibbonPerson.status='Full'
                     AND FIND_IN_SET(gibbonStudentEnrolment.gibbonYearGroupID, :gibbonYearGroupIDList)
-                    ORDER BY rollGroupName, surname, preferredName";
+                    ORDER BY rollGroupName, preferredName, surname";
             $result = $pdo->executeQuery($data, $sql);
 
             if ($result->rowCount() > 0) {
@@ -84,7 +84,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Timetable/studentEnrolment
                 }, array());
             }
 
-            $sql = "SELECT gibbonPerson.gibbonPersonID, surname, preferredName, status, username FROM gibbonPerson JOIN gibbonStudentEnrolment ON (gibbonPerson.gibbonPersonID=gibbonStudentEnrolment.gibbonPersonID) WHERE status='Full' OR status='Expected' ORDER BY surname, preferredName";
+            $sql = "SELECT gibbonPerson.gibbonPersonID, surname, preferredName, status, username FROM gibbonPerson JOIN gibbonStudentEnrolment ON (gibbonPerson.gibbonPersonID=gibbonStudentEnrolment.gibbonPersonID) WHERE status='Full' OR status='Expected' ORDER BY preferredName, surname";
             $result = $pdo->executeQuery(array(), $sql);
 
             if ($result->rowCount() > 0) {
@@ -185,7 +185,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Timetable/studentEnrolment
             });
             
             $table->addColumn('name', __('Name'))
-                ->sortable(['surname', 'preferredName'])
+                ->sortable(['preferredName', 'surname'])
                 ->format(function ($person) {
                     $isStudent = stripos($person['role'], 'Student') !== false;
                     $name = Format::name('', $person['preferredName'], $person['surname'], $isStudent ? 'Student' : 'Staff', true, true);

@@ -50,7 +50,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Data Updater/data_medical.
 
                 try {
                     $dataSelect = array();
-                    $sqlSelect = "SELECT surname, preferredName, gibbonPerson.gibbonPersonID FROM gibbonPerson WHERE status='Full' ORDER BY surname, preferredName";
+                    $sqlSelect = "SELECT surname, preferredName, gibbonPerson.gibbonPersonID FROM gibbonPerson WHERE status='Full' ORDER BY preferredName, surname";
                     $resultSelect = $connection2->prepare($sqlSelect);
                     $resultSelect->execute($dataSelect);
                 } catch (PDOException $e) {

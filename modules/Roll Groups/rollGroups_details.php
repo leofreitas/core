@@ -142,7 +142,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Roll Groups/rollGroups_det
                 echo $table->render([$row]);
 
                 //Create Form
-                $sortBy = $_GET['sortBy'] ?? 'rollOrder, surname, preferredName';
+                $sortBy = $_GET['sortBy'] ?? 'rollOrder, preferredName, surname';
 
                 $form = Form::create('action', $_SESSION[$guid]['absoluteURL'].'/index.php', 'get');
 

@@ -89,7 +89,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Attendance/consecutiveAbse
                   AND (dateStart IS NULL OR dateStart <= CURRENT_TIMESTAMP)
                   AND (dateEnd IS NULL  OR dateEnd >= CURRENT_TIMESTAMP)
                   AND gibbonStudentEnrolment.gibbonSchoolYearID=:gibbonSchoolYearID
-                ORDER BY surname, preferredName, LENGTH(rollGroup), rollGroup";
+                ORDER BY preferredName, surname, LENGTH(rollGroup), rollGroup";
 
             $result = $connection2->prepare($sql);
             $result->execute($data);

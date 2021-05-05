@@ -241,7 +241,7 @@ class StaffDashboard implements OutputableInterface
             $rollGroups[$count][1] = $rowRollGroups['nameShort'];
 
             //Roll group table
-            $this->rollGroupTable->build($rowRollGroups['gibbonRollGroupID'], true, false, 'rollOrder, surname, preferredName');
+            $this->rollGroupTable->build($rowRollGroups['gibbonRollGroupID'], true, false, 'rollOrder, preferredName, surname');
             $this->rollGroupTable->setTitle('');
             
             if ($rowRollGroups['attendance'] == 'Y' AND $attendanceAccess) {

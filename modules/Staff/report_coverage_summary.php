@@ -71,7 +71,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Staff/report_coverage_summ
     
     // Get all substitutes
     $criteria = $substituteGateway->newQueryCriteria()
-        ->sortBy(['active', 'surname', 'preferredName'])
+        ->sortBy(['active', 'preferredName', 'surname'])
         ->fromPOST();
 
     $substitutes = $substituteGateway->queryAllSubstitutes($criteria);
@@ -186,7 +186,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Staff/report_coverage_summ
 
         // COLUMNS
         $table->addColumn('fullName', __('Name'))
-            ->sortable(['surname', 'preferredName'])
+            ->sortable(['preferredName', 'surname'])
             ->format(function ($person) use ($guid) {
                 $text = Format::name($person['title'], $person['preferredName'], $person['surname'], 'Staff', true, true);
                 $url = $_SESSION[$guid]['absoluteURL'].'/index.php?q=/modules/Staff/report_coverage_summary.php&gibbonPersonID='.$person['gibbonPersonID'];

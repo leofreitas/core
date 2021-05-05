@@ -200,7 +200,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Timetable Admin/courseEnro
             });
             
             $table->addColumn('name', __('Name'))
-                ->sortable(['surname', 'preferredName'])
+                ->sortable(['preferredName', 'surname'])
                 ->format($linkedName);
             $table->addColumn('email', __('Email'));
             $table->addColumn('role', __('Class Role'));

@@ -41,7 +41,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Students/medicalForm_manag
     // CRITERIA
     $criteria = $medicalGateway->newQueryCriteria(true)
         ->searchBy($medicalGateway->getSearchableColumns(), $search)
-        ->sortBy(['surname', 'preferredName'])
+        ->sortBy(['preferredName', 'surname'])
         ->fromPOST();
 
     echo '<h2>';
@@ -82,7 +82,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Students/medicalForm_manag
     });
 
     $table->addColumn('student', __('Student'))
-        ->sortable(['surname', 'preferredName'])
+        ->sortable(['preferredName', 'surname'])
         ->format(Format::using('name', ['', 'preferredName', 'surname', 'Student', true]));
 
     $table->addColumn('rollGroup', __('Roll Group'));

@@ -333,7 +333,7 @@ class DatabaseFormFactory extends FormFactory
     {
         $sql = "SELECT gibbonPerson.gibbonPersonID, title, surname, preferredName, username 
                 FROM gibbonPerson JOIN gibbonStaff ON (gibbonPerson.gibbonPersonID=gibbonStaff.gibbonPersonID)
-                WHERE status='Full' ORDER BY surname, preferredName";
+                WHERE status='Full' ORDER BY preferredName, surname";
 
         $staff = $this->pdo->select($sql)->fetchGroupedUnique();
 
@@ -351,7 +351,7 @@ class DatabaseFormFactory extends FormFactory
                 FROM gibbonPerson
                 WHERE status='Full'
                 AND FIND_IN_SET(gibbonPersonID, :gibbonPersonIDList)
-                ORDER BY FIND_IN_SET(gibbonPersonID, :gibbonPersonIDList), surname, preferredName";
+                ORDER BY FIND_IN_SET(gibbonPersonID, :gibbonPersonIDList), preferredName, surname";
 
         $people = $this->pdo->select($sql, $data)->fetchGroupedUnique();
 
@@ -409,7 +409,7 @@ class DatabaseFormFactory extends FormFactory
                 FROM gibbonPerson
                 JOIN gibbonRole ON (gibbonRole.gibbonRoleID=gibbonPerson.gibbonRoleIDPrimary)
                 WHERE status='Full' OR status='Expected'
-                ORDER BY surname, preferredName";
+                ORDER BY preferredName, surname";
         $result = $this->pdo->executeQuery(array(), $sql);
 
         if ($result->rowCount() > 0) {
@@ -453,7 +453,7 @@ class DatabaseFormFactory extends FormFactory
                         JOIN gibbonStudentEnrolment ON (gibbonStudentEnrolment.gibbonPersonID=gibbonPerson.gibbonPersonID)
                         JOIN gibbonRollGroup ON (gibbonStudentEnrolment.gibbonRollGroupID=gibbonRollGroup.gibbonRollGroupID)
                     WHERE gibbonRollGroup.gibbonSchoolYearID=:gibbonSchoolYearID
-                    ORDER BY name, surname, preferredName";
+                    ORDER BY name, preferredName, surname";
             } elseif ($params["activeStudents"]) {
                 $data = array('gibbonSchoolYearID' => $gibbonSchoolYearID);
                 $sql = "SELECT gibbonPerson.gibbonPersonID, preferredName, surname, username, gibbonRollGroup.name AS name
@@ -462,7 +462,7 @@ class DatabaseFormFactory extends FormFactory
                         JOIN gibbonRollGroup ON (gibbonStudentEnrolment.gibbonRollGroupID=gibbonRollGroup.gibbonRollGroupID)
                     WHERE gibbonRollGroup.gibbonSchoolYearID=:gibbonSchoolYearID
                     AND (gibbonPerson.status='Full' || gibbonPerson.status='Expected')
-                    ORDER BY name, surname, preferredName";
+                    ORDER BY name, preferredName, surname";
             } else {
                 $data = array('gibbonSchoolYearID' => $gibbonSchoolYearID, 'date' => date('Y-m-d'));
                 $sql = "SELECT gibbonPerson.gibbonPersonID, preferredName, surname, username, gibbonRollGroup.name AS name
@@ -473,7 +473,7 @@ class DatabaseFormFactory extends FormFactory
                         AND (dateStart IS NULL OR dateStart<=:date)
                         AND (dateEnd IS NULL  OR dateEnd>=:date)
                         AND gibbonRollGroup.gibbonSchoolYearID=:gibbonSchoolYearID
-                    ORDER BY name, surname, preferredName";
+                    ORDER BY name, preferredName, surname";
             }
 
             $results = $this->pdo->executeQuery($data, $sql);
@@ -496,14 +496,14 @@ class DatabaseFormFactory extends FormFactory
                     FROM gibbonPerson
                         JOIN gibbonRole ON (gibbonPerson.gibbonRoleIDPrimary=gibbonRole.gibbonRoleID)
                     WHERE gibbonRole.category='Student'
-                    ORDER BY surname, preferredName";
+                    ORDER BY preferredName, surname";
             } elseif ($params["activeStudents"]) {
                 $sql = "SELECT gibbonPerson.gibbonPersonID, title, surname, preferredName, username, null AS name
                     FROM gibbonPerson
                         JOIN gibbonRole ON (gibbonPerson.gibbonRoleIDPrimary=gibbonRole.gibbonRoleID)
                     WHERE gibbonRole.category='Student'
                     AND (gibbonPerson.status='Full' || gibbonPerson.status='Expected')
-                    ORDER BY surname, preferredName";
+                    ORDER BY preferredName, surname";
             } else {
                 $data = array('gibbonSchoolYearID' => $gibbonSchoolYearID, 'date' => date('Y-m-d'));
                 $sql = "SELECT gibbonPerson.gibbonPersonID, title, surname, preferredName, username, gibbonRollGroup.name AS name
@@ -514,7 +514,7 @@ class DatabaseFormFactory extends FormFactory
                         AND (dateStart IS NULL OR dateStart<=:date)
                         AND (dateEnd IS NULL  OR dateEnd>=:date)
                         AND gibbonRollGroup.gibbonSchoolYearID=:gibbonSchoolYearID
-                    ORDER BY surname, preferredName";
+                    ORDER BY preferredName, surname";
             }
 
             $results = $this->pdo->executeQuery($data, $sql);

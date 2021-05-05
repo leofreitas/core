@@ -49,7 +49,7 @@ if (isActionAccessible($guid, $connection2, '/modules/User Admin/user_manage.php
     $userGateway = $container->get(UserGateway::class);
     $criteria = $userGateway->newQueryCriteria(true)
         ->searchBy($userGateway->getSearchableColumns(), $search)
-        ->sortBy(['surname', 'preferredName'])
+        ->sortBy(['preferredName', 'surname'])
         ->fromPOST();
 
     echo '<h2>';
@@ -111,7 +111,7 @@ if (isActionAccessible($guid, $connection2, '/modules/User Admin/user_manage.php
     $table->addColumn('fullName', __('Name'))
         ->context('primary')
         ->width('30%')
-        ->sortable(['surname', 'preferredName'])
+        ->sortable(['preferredName', 'surname'])
         ->format(Format::using('name', ['title', 'preferredName', 'surname', 'Student', true]));
 
     $table->addColumn('status', __('Status'))
@@ -128,7 +128,7 @@ if (isActionAccessible($guid, $connection2, '/modules/User Admin/user_manage.php
         ->format(function($person) use ($guid) {
             $output = '';
             foreach ($person['families'] as $family) {
-                $output .= '<a href="'.$_SESSION[$guid]['absoluteURL'].'/index.php?q=/modules/Students/student_view_details.php&gibbonPersonID='.$family['gibbonPersonIDStudent'].'&search=&allStudents=on&sort=surname, preferredName&subpage=Family">'.$family['name'].'</a><br/>';
+                $output .= '<a href="'.$_SESSION[$guid]['absoluteURL'].'/index.php?q=/modules/Students/student_view_details.php&gibbonPersonID='.$family['gibbonPersonIDStudent'].'&search=&allStudents=on&sort=preferredName, surname&subpage=Family">'.$family['name'].'</a><br/>';
             }
             return $output;
         });

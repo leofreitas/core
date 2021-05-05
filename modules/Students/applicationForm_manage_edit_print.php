@@ -522,7 +522,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Students/applicationForm_m
                         //Get adults
                         
                             $dataMember = array('gibbonFamilyID' => $rowFamily['gibbonFamilyID']);
-                            $sqlMember = 'SELECT * FROM gibbonFamilyAdult JOIN gibbonPerson ON (gibbonFamilyAdult.gibbonPersonID=gibbonPerson.gibbonPersonID) WHERE gibbonFamilyID=:gibbonFamilyID ORDER BY contactPriority, surname, preferredName';
+                            $sqlMember = 'SELECT * FROM gibbonFamilyAdult JOIN gibbonPerson ON (gibbonFamilyAdult.gibbonPersonID=gibbonPerson.gibbonPersonID) WHERE gibbonFamilyID=:gibbonFamilyID ORDER BY contactPriority, preferredName, surname';
                             $resultMember = $connection2->prepare($sqlMember);
                             $resultMember->execute($dataMember);
 
@@ -629,7 +629,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Students/applicationForm_m
                 if ($row['gibbonFamilyID'] != '') {
                     
                         $dataMember = array('gibbonFamilyID' => $row['gibbonFamilyID']);
-                        $sqlMember = 'SELECT * FROM gibbonFamilyChild JOIN gibbonPerson ON (gibbonFamilyChild.gibbonPersonID=gibbonPerson.gibbonPersonID) JOIN gibbonRole ON (gibbonPerson.gibbonRoleIDPrimary=gibbonRole.gibbonRoleID) WHERE gibbonFamilyID=:gibbonFamilyID ORDER BY surname, preferredName';
+                        $sqlMember = 'SELECT * FROM gibbonFamilyChild JOIN gibbonPerson ON (gibbonFamilyChild.gibbonPersonID=gibbonPerson.gibbonPersonID) JOIN gibbonRole ON (gibbonPerson.gibbonRoleIDPrimary=gibbonRole.gibbonRoleID) WHERE gibbonFamilyID=:gibbonFamilyID ORDER BY preferredName, surname';
                         $resultMember = $connection2->prepare($sqlMember);
                         $resultMember->execute($dataMember);
 

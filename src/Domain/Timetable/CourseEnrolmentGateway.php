@@ -141,7 +141,7 @@ class CourseEnrolmentGateway extends QueryableGateway
                 WHERE gibbonStudentEnrolment.gibbonSchoolYearID=:gibbonSchoolYearID
                 AND gibbonPerson.status='Full'
                 AND FIND_IN_SET(gibbonStudentEnrolment.gibbonYearGroupID, :gibbonYearGroupIDList)
-                ORDER BY rollGroupName, surname, preferredName";
+                ORDER BY rollGroupName, preferredName, surname";
 
         return $this->db()->select($sql, $data);
     }
@@ -207,7 +207,7 @@ class CourseEnrolmentGateway extends QueryableGateway
             AND (NOT role='Student - Left') AND (NOT role='Teacher - Left') AND NOT (role='Teacher' AND reportable='N')
             GROUP BY gibbonCourseClassPerson.gibbonCourseClassPersonID, gibbonPerson.gibbonPersonID
             HAVING COUNT(gibbonTTDayRowClassExceptionID) = 0
-            ORDER BY FIELD(role, 'Teacher', 'Assistant', 'Technician', 'Student', 'Parent'), surname, preferredName";
+            ORDER BY FIELD(role, 'Teacher', 'Assistant', 'Technician', 'Student', 'Parent'), preferredName, surname";
 
         return $this->db()->select($sql, $data);
     }

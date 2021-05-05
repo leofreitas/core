@@ -34,7 +34,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Attendance/report_students
     }
 
     $allStudents = !empty($_GET["allStudents"])? 1 : 0;
-    $sort = !empty($_GET['sort'])? $_GET['sort'] : 'surname, preferredName';
+    $sort = !empty($_GET['sort'])? $_GET['sort'] : 'preferredName, surname';
     $gibbonYearGroupIDList = (!empty($_GET['gibbonYearGroupIDList'])) ? explode(',', $_GET['gibbonYearGroupIDList']) : null ;
 
     require_once __DIR__ . '/src/AttendanceView.php';
@@ -74,11 +74,11 @@ if (isActionAccessible($guid, $connection2, '/modules/Attendance/report_students
     }
 
     try {
-        $orderBy = 'ORDER BY surname, preferredName, LENGTH(rollGroup), rollGroup';
+        $orderBy = 'ORDER BY preferredName, surname, LENGTH(rollGroup), rollGroup';
         if ($sort == 'preferredName')
             $orderBy = 'ORDER BY preferredName, surname, LENGTH(rollGroup), rollGroup';
         if ($sort == 'rollGroup')
-            $orderBy = 'ORDER BY LENGTH(rollGroup), rollGroup, surname, preferredName';
+            $orderBy = 'ORDER BY LENGTH(rollGroup), rollGroup, preferredName, surname';
 
         $data = array('gibbonSchoolYearID' => $_SESSION[$guid]['gibbonSchoolYearID']);
 

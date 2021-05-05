@@ -49,7 +49,7 @@ if ($result) {
                     WHERE gibbonRollGroupID=:gibbonRollGroupID AND status='Full' 
                     AND (dateStart IS NULL OR dateStart<=:today) 
                     AND (dateEnd IS NULL  OR dateEnd>=:today) 
-                    ORDER BY surname, preferredName";
+                    ORDER BY preferredName, surname";
 
             $result = $pdo->select($sql, $data);
 

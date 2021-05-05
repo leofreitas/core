@@ -68,7 +68,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Timetable Admin/report_cla
 
         $table->addColumn('rollGroup', __('Roll Group'));
         $table->addColumn('student', __('Student'))
-            ->sortable(['surname', 'preferredName'])
+            ->sortable(['preferredName', 'surname'])
             ->format(function($person) use ($guid) {
                 return Format::link($_SESSION[$guid]['absoluteURL'].'/index.php?q=/modules/Timetable/tt_view.php&gibbonPersonID='.$person['gibbonPersonID'], Format::name('', $person['preferredName'], $person['surname'], 'Student', true) );
             });

@@ -198,11 +198,11 @@ if (isActionAccessible($guid, $connection2, '/modules/Attendance/report_summary_
         //Produce array of attendance data
         try {
             $groupBy = 'GROUP BY gibbonAttendanceLogPerson.gibbonPersonID';
-            $orderBy = 'ORDER BY surname, preferredName';
+            $orderBy = 'ORDER BY preferredName, surname';
             if ($sort == 'preferredName')
                 $orderBy = 'ORDER BY preferredName, surname';
             if ($sort == 'rollGroup')
-                $orderBy = ' ORDER BY LENGTH(rollGroup), rollGroup, surname, preferredName';
+                $orderBy = ' ORDER BY LENGTH(rollGroup), rollGroup, preferredName, surname';
 
             if ($group == 'all') {
                 $sql = "SELECT gibbonPerson.gibbonPersonID, gibbonRollGroup.nameShort AS rollGroup, surname, preferredName, $sqlSelect FROM gibbonAttendanceLogPerson JOIN gibbonAttendanceCode ON (gibbonAttendanceLogPerson.type=gibbonAttendanceCode.name) JOIN gibbonPerson ON (gibbonAttendanceLogPerson.gibbonPersonID=gibbonPerson.gibbonPersonID) JOIN gibbonStudentEnrolment ON (gibbonStudentEnrolment.gibbonPersonID=gibbonPerson.gibbonPersonID) JOIN gibbonRollGroup ON (gibbonStudentEnrolment.gibbonRollGroupID=gibbonRollGroup.gibbonRollGroupID) WHERE date>=:dateStart AND date<=:dateEnd AND gibbonStudentEnrolment.gibbonSchoolYearID=:gibbonSchoolYearID";

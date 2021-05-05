@@ -70,7 +70,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Staff/absences_approval.ph
 
     // COLUMNS
     $table->addColumn('fullName', __('Name'))
-        ->sortable(['surname', 'preferredName'])
+        ->sortable(['preferredName', 'surname'])
         ->format(function ($absence) use ($guid) {
             $text = Format::name($absence['title'], $absence['preferredName'], $absence['surname'], 'Staff', false, true);
             $url = $_SESSION[$guid]['absoluteURL'].'/index.php?q=/modules/Staff/absences_view_byPerson.php&gibbonPersonID='.$absence['gibbonPersonID'];

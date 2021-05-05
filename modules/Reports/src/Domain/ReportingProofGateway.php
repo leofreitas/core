@@ -125,7 +125,7 @@ class ReportingProofGateway extends QueryableGateway
             ->where('(:today BETWEEN gibbonReportingCycle.dateStart AND gibbonReportingCycle.dateEnd)')
             ->bindValue('today', date('Y-m-d'));
 
-        $query->orderBy(['criteriaTarget', 'surname', 'preferredName', 'nameShort']);
+        $query->orderBy(['criteriaTarget', 'preferredName', 'surname', 'nameShort']);
 
         return $this->runSelect($query);
 
@@ -216,7 +216,7 @@ class ReportingProofGateway extends QueryableGateway
             $query->where('FIND_IN_SET(gibbonReportingCriteria.gibbonReportingScopeID, :reportingScopeIDs)', ['reportingScopeIDs' => $reportingScopeIDs]);
         }
 
-        $query->orderBy(['criteriaTarget', 'nameShort', 'surname', 'preferredName']);
+        $query->orderBy(['criteriaTarget', 'nameShort', 'preferredName', 'surname']);
 
         return $this->runSelect($query);
     }

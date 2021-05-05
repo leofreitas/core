@@ -75,7 +75,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Activities/report_activity
     // CRITERIA
     $criteria = $activityGateway->newQueryCriteria(true)
         ->searchBy($activityGateway->getSearchableColumns(), isset($_GET['search'])? $_GET['search'] : '')
-        ->sortBy(['surname', 'preferredName'])
+        ->sortBy(['preferredName', 'surname'])
         ->pageSize(!empty($viewMode) ? 0 : 50)
         ->fromPOST();
 
@@ -94,7 +94,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Activities/report_activity
 
     $table->addColumn('rollGroup', __('Roll Group'))->width('10%');
     $table->addColumn('student', __('Student'))
-        ->sortable(['surname', 'preferredName'])
+        ->sortable(['preferredName', 'surname'])
         ->format(function ($student) use ($guid) {
             $name = Format::name('', $student['preferredName'], $student['surname'], 'Student', true);
             return Format::link($_SESSION[$guid]['absoluteURL'].'/index.php?q=/modules/Students/student_view_details.php&gibbonPersonID='.$student['gibbonPersonID'].'&subpage=Activities', $name);

@@ -54,7 +54,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Attendance/report_graph_by
         $dateEnd = $_SESSION[$guid]['gibbonSchoolYearLastDay'];
     }
 
-    $sort = !empty($_POST['sort'])? $_POST['sort'] : 'surname, preferredName';
+    $sort = !empty($_POST['sort'])? $_POST['sort'] : 'preferredName, surname';
 
     // Get the roll groups - revert to All if it's selected
     $rollGroups = $_POST['gibbonRollGroupID'] ?? array('all');

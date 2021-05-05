@@ -81,7 +81,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Reports/archive_byReport_v
     $roleCategory = getRoleCategory($gibbon->session->get('gibbonRoleIDCurrent'), $connection2);
 
     $criteria = $reportGateway->newQueryCriteria(true)
-        ->sortBy($gibbonRollGroupID ? ['surname', 'preferredName'] : ['sequenceNumber', 'name'])
+        ->sortBy($gibbonRollGroupID ? ['preferredName', 'surname'] : ['sequenceNumber', 'name'])
         ->fromPOST();
 
     // QUERY
@@ -101,7 +101,7 @@ if (isActionAccessible($guid, $connection2, '/modules/Reports/archive_byReport_v
 
     if (!empty($gibbonRollGroupID)) {
         $table->addColumn('student', __('Student'))
-            ->sortable(['surname', 'preferredName'])
+            ->sortable(['preferredName', 'surname'])
             ->width('25%')
             ->format(function ($person) use ($guid) {
                 return Format::nameLinked($person['gibbonPersonID'],'', $person['preferredName'], $person['surname'], 'Student', true, false, ['subpage' => 'Reports']);
