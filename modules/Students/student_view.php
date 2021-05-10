@@ -106,8 +106,8 @@ if (isActionAccessible($guid, $connection2, '/modules/Students/student_view.php'
             echo '</h2>';
 
             $sortOptions = array(
+                'preferredName,surname' => __('Given Name'),
                 'surname,preferredName' => __('Surname'),
-                'preferredName' => __('Given Name'),
                 'rollGroup' => __('Roll Group'),
                 'yearGroup' => __('Year Group'),
             );
