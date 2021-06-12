@@ -1236,6 +1236,11 @@ function renderTTDay($guid, $connection2, $gibbonTTID, $schoolOpen, $startDaySta
                     if ($rowPeriods['type'] == 'Lesson') {
                         $class = 'ttLesson';
                     }
+
+                    if ((date('H:i:s') > $effectiveStart) and (date('H:i:s') < $effectiveEnd) and $rowPeriods['date'] == date('Y-m-d')) {
+                        $class = 'ttPeriodCurrent bg-green-100';
+                    }
+
                     $output .= "<div class='$class' $title style='z-index: $zCount; position: absolute; top: $top; width: 100%; min-width: $width; height: $height; margin: 0px; padding: 0px; opacity: $ttAlpha'>";
                     if ($height > 15 and $height < 30) {
                         $output .= $rowPeriods['name'].'<br/>';
@@ -1344,7 +1349,7 @@ function renderTTDay($guid, $connection2, $gibbonTTID, $schoolOpen, $startDaySta
                                 if ($spaceChanges[$rowPeriods['gibbonTTDayRowClassID']][0] != '') {
                                     $output .= "<span style='border: 1px solid #c00; padding: 0 2px'>".$spaceChanges[$rowPeriods['gibbonTTDayRowClassID']][0].'</span>';
                                 } else {
-                                    $output .= "<span style='border: 1px solid #c00; padding: 0 2px'><i>".__('No Space Allocated').'</span>';
+                                    $output .= "<span style='border: 1px solid #c00; padding: 0 2px'><i>".__('No Facility').'</span>';
                                 }
                             }
                         } else {
@@ -2136,6 +2141,11 @@ function renderTTSpaceDay($guid, $connection2, $gibbonTTID, $startDayStamp, $cou
                 if ($rowPeriods['type'] == 'Lesson') {
                     $class = 'ttLesson';
                 }
+
+                if ((date('H:i:s') > $effectiveStart) and (date('H:i:s') < $effectiveEnd) and $rowPeriods['date'] == date('Y-m-d')) {
+                    $class = 'ttPeriodCurrent';
+                }
+
                 $output .= "<div class='$class' $title style='z-index: $zCount; position: absolute; top: $top; min-width: $width; width: 100%; height: $height; margin: 0px; padding: 0px; opacity: $ttAlpha'>";
                 if ($height > 15 and $height < 30) {
                     $output .= $rowPeriods['name'].'<br/>';
